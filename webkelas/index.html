@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XII TJKT 2 - Class Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- LOGIN PAGE (Halaman Pertama) -->
+    <div id="loginPage" class="login-page">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h1>XII TJKT 2</h1>
+                <p>Website Kelas</p>
+            </div>
+            
+            <div class="login-box">
+                <h2>Masuk</h2>
+                
+                <div class="login-options">
+                    <button class="login-btn guest" onclick="login('guest')">
+                        <i class="fas fa-eye"></i>
+                        <span>Lihat Sebagai Guest</span>
+                        <small>Hanya melihat data</small>
+                    </button>
+                    
+                    <div class="divider">
+                        <span>atau</span>
+                    </div>
+                    
+                    <div class="admin-form">
+                        <input type="text" id="adminUser" placeholder="Username (admin)">
+                        <input type="password" id="adminPass" placeholder="Password (admin123)">
+                        <button class="login-btn admin" onclick="login('admin')">
+                            <i class="fas fa-lock"></i>
+                            <span>Login Admin</span>
+                            <small>Kelola data kelas</small>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP (Hidden by default) -->
+    <div id="mainApp" style="display: none;">
+        
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>XII TJKT 2</span>
+            </div>
+            <div class="nav-user">
+                <span id="userBadge" class="user-badge">Guest</span>
+                <button class="btn-logout" onclick="logout()" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+            <button class="nav-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="active" onclick="showSection('home')"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="#absen" onclick="showSection('absen')"><i class="fas fa-clipboard-check"></i> Absen</a></li>
+                <li><a href="#jadwal" onclick="showSection('jadwal')"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+                <li><a href="#piket" onclick="showSection('piket')"><i class="fas fa-broom"></i> Piket</a></li>
+                <li><a href="#struktur" onclick="showSection('struktur')"><i class="fas fa-sitemap"></i> Struktur</a></li>
+                <li><a href="#galeri" onclick="showSection('galeri')"><i class="fas fa-images"></i> Galeri</a></li>
+            </ul>
+        </nav>
+
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Selamat Datang</h1>
+                    <h2>Website Kelas XII TJKT 2</h2>
+                    <p>SMK Negeri 1 Contoh</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat clickable" onclick="goToAbsen('all')">
+                            <i class="fas fa-users stat-icon"></i>
+                            <span class="stat-number" id="totalSiswa">0</span>
+                            <span class="stat-label">Total Siswa</span>
+                        </div>
+                        
+                        <div class="stat clickable male" onclick="goToAbsen('L')">
+                            <i class="fas fa-mars stat-icon"></i>
+                            <span class="stat-number" id="totalLaki">0</span>
+                            <span class="stat-label">Laki-laki</span>
+                        </div>
+                        
+                        <div class="stat clickable female" onclick="goToAbsen('P')">
+                            <i class="fas fa-venus stat-icon"></i>
+                            <span class="stat-number" id="totalPerempuan">0</span>
+                            <span class="stat-label">Perempuan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-info">
+                <div class="info-card" onclick="showSection('jadwal')">
+                    <i class="fas fa-clock"></i>
+                    <h3>Jadwal Hari Ini</h3>
+                    <p id="jadwalHariIni">-</p>
+                </div>
+                <div class="info-card" onclick="showSection('piket')">
+                    <i class="fas fa-broom"></i>
+                    <h3>Piket Hari Ini</h3>
+                    <p id="piketHariIni">-</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Absen Section -->
+        <section id="absen" class="section">
+            <div class="container">
+                <h2 class="section-title">
+                    <i class="fas fa-clipboard-check"></i> 
+                    Daftar Absen 
+                    <span id="filterLabel" class="filter-label"></span>
+                </h2>
+                
+                <div class="filter-tabs">
+                    <button class="filter-btn active" onclick="filterAbsen('all')">Semua</button>
+                    <button class="filter-btn" onclick="filterAbsen('L')">Laki-laki</button>
+                    <button class="filter-btn" onclick="filterAbsen('P')">Perempuan</button>
+                </div>
+
+                <div class="absen-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchAbsen" placeholder="Cari nama..." onkeyup="searchSiswa()">
+                    </div>
+                    <button class="btn btn-primary admin-only" onclick="openModal('absenModal')" style="display: none;">
+                        <i class="fas fa-plus"></i> Tambah
+                    </button>
+                </div>
+                
+                <div class="absen-list" id="absenList"></div>
+            </div>
+        </section>
+
+        <!-- Jadwal Section -->
+        <section id="jadwal" class="section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Jadwal Pelajaran</h2>
+                <div class="jadwal-tabs">
+                    <button class="tab-btn active" onclick="showJadwal('senin')">Senin</button>
+                    <button class="tab-btn" onclick="showJadwal('selasa')">Selasa</button>
+                    <button class="tab-btn" onclick="showJadwal('rabu')">Rabu</button>
+                    <button class="tab-btn" onclick="showJadwal('kamis')">Kamis</button>
+                    <button class="tab-btn" onclick="showJadwal('jumat')">Jumat</button>
+                </div>
+                <div class="jadwal-content" id="jadwalContent"></div>
+                <button class="btn btn-primary btn-edit admin-only" onclick="openModal('jadwalModal')" style="display: none;">
+                    <i class="fas fa-edit"></i> Edit Jadwal
+                </button>
+            </div>
+        </section>
+
+        <!-- Piket Section -->
+        <section id="piket" class="section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-broom"></i> Jadwal Piket</h2>
+                <div class="piket-grid" id="piketGrid"></div>
+                <button class="btn btn-primary btn-edit admin-only" onclick="openModal('piketModal')" style="display: none;">
+                    <i class="fas fa-edit"></i> Edit Piket
+                </button>
+            </div>
+        </section>
+
+        <!-- Struktur Section -->
+        <section id="struktur" class="section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-sitemap"></i> Struktur Kelas</h2>
+                <div class="struktur-chart" id="strukturChart"></div>
+                <button class="btn btn-primary btn-edit admin-only" onclick="openModal('strukturModal')" style="display: none;">
+                    <i class="fas fa-edit"></i> Edit Struktur
+                </button>
+            </div>
+        </section>
+
+        <!-- Galeri Section -->
+        <section id="galeri" class="section">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-images"></i> Foto Kelas</h2>
+                <div class="galeri-grid" id="galeriGrid"></div>
+                <div class="galeri-upload admin-only" style="display: none;">
+                    <input type="file" id="uploadFoto" accept="image/*" multiple onchange="uploadFoto(event)">
+                    <label for="uploadFoto" class="btn btn-primary">
+                        <i class="fas fa-upload"></i> Upload Foto
+                    </label>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- End Main App -->
+
+    <!-- MODALS -->
+    <!-- Absen Modal -->
+    <div id="absenModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('absenModal')">&times;</span>
+            <h3>Tambah/Edit Siswa</h3>
+            <form id="absenForm" onsubmit="saveAbsen(event)">
+                <input type="hidden" id="editIndex">
+                <div class="form-group">
+                    <label>No. Absen</label>
+                    <input type="number" id="noAbsen" required>
+                </div>
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="namaSiswa" required>
+                </div>
+                <div class="form-group">
+                    <label>Jenis Kelamin</label>
+                    <select id="jkSiswa" required>
+                        <option value="L">Laki-laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Jadwal Modal -->
+    <div id="jadwalModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('jadwalModal')">&times;</span>
+            <h3>Edit Jadwal</h3>
+            <form id="jadwalForm" onsubmit="saveJadwal(event)">
+                <div class="form-group">
+                    <label>Hari</label>
+                    <select id="hariJadwal" required>
+                        <option value="senin">Senin</option>
+                        <option value="selasa">Selasa</option>
+                        <option value="rabu">Rabu</option>
+                        <option value="kamis">Kamis</option>
+                        <option value="jumat">Jumat</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Mata Pelajaran (pisah dengan koma)</label>
+                    <textarea id="mapelJadwal" rows="4" placeholder="Matematika, Bahasa Indonesia..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Piket Modal -->
+    <div id="piketModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('piketModal')">&times;</span>
+            <h3>Edit Jadwal Piket</h3>
+            <form id="piketForm" onsubmit="savePiket(event)">
+                <div class="form-group">
+                    <label>Hari</label>
+                    <select id="hariPiket" required>
+                        <option value="Senin">Senin</option>
+                        <option value="Selasa">Selasa</option>
+                        <option value="Rabu">Rabu</option>
+                        <option value="Kamis">Kamis</option>
+                        <option value="Jumat">Jumat</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nama Petugas (pisah dengan koma)</label>
+                    <textarea id="namaPiket" rows="3" placeholder="Budi, Ani..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Struktur Modal -->
+    <div id="strukturModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('strukturModal')">&times;</span>
+            <h3>Edit Struktur Kelas</h3>
+            <form id="strukturForm" onsubmit="saveStruktur(event)">
+                <div class="form-group">
+                    <label>Jabatan</label>
+                    <select id="jabatanStruktur" required>
+                        <option value="Wali Kelas">Wali Kelas</option>
+                        <option value="Ketua Kelas">Ketua Kelas</option>
+                        <option value="Wakil Ketua">Wakil Ketua</option>
+                        <option value="Sekretaris">Sekretaris</option>
+                        <option value="Bendahara">Bendahara</option>
+                        <option value="Seksi Olahraga">Seksi Olahraga</option>
+                        <option value="Seksi Kebersihan">Seksi Kebersihan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" id="namaStruktur" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
