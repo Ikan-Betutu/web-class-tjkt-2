@@ -12,7 +12,7 @@ let currentFilter = 'all';
 let dataAbsen = JSON.parse(localStorage.getItem('absen')) || [
     {no: 1, nama: "Alim Saputra", jk: "L"},
     {no: 2, nama: "Ananda Mikola", jk: "L"},
-    {no: 3, nama: "Dany Indarto Prasetyo", jk: "P"},
+    {no: 3, nama: "Dany Indarto Prasetyo", jk: "L"},
     {no: 4, nama: "Dede Sulkifli", jk: "L"},
     {no: 5, nama: "Devi", jk: "P"},
     {no: 6, nama: "Fajrun Ziyadi Murawi", jk: "L"},
@@ -37,16 +37,16 @@ let dataAbsen = JSON.parse(localStorage.getItem('absen')) || [
     {no: 25, nama: "Muh. Rasyidi", jk: "L"},
     {no: 26, nama: "Muhammad Sahrul Ramadhan", jk: "L"},
     {no: 27, nama: "Nanda Dwi Darma Putra Anggara", jk: "L"},
-    {no: 28, nama: "Nora Indasari", jk: "L"},
-    {no: 29, nama: "Nur Julianaya Mulia", jk: "L"},
-    {no: 30, nama: "Nur Nayla R", jk: "L"},
-    {no: 31, nama: "Nurul Annisa Amilah Sholehah Amal", jk: "L"},
-    {no: 31, nama: "Resky Suci Pebriani", jk: "L"},
+    {no: 28, nama: "Nora Indasari", jk: "P"},
+    {no: 29, nama: "Nur Julianaya Mulia", jk: "P"},
+    {no: 30, nama: "Nur Nayla R", jk: "P"},
+    {no: 31, nama: "Nurul Annisa Amilah Sholehah Amal", jk: "P"},
+    {no: 31, nama: "Resky Suci Pebriani", jk: "P"},
     {no: 33, nama: "Reymond", jk: "L"},
     {no: 34, nama: "Risky Andika Rasul", jk: "L"},
-    {no: 35, nama: "Srigusnawati", jk: "L"},
+    {no: 35, nama: "Srigusnawati", jk: "P"},
     {no: 36, nama: "Tristan Manuel Musu", jk: "L"},
-    {no: 37, nama: "Syfa Shara", jk: "L"},
+    {no: 37, nama: "Syfa Shara", jk: "P"},
 
 
     
@@ -526,4 +526,5 @@ window.onclick = function(e) {
         e.target.classList.remove('active');
     }
 }
+
 
