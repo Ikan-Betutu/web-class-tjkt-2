@@ -77,9 +77,9 @@ let dataStruktur = JSON.parse(localStorage.getItem('struktur')) || [
 ];
 
 let dataGaleri = JSON.parse(localStorage.getItem('galeri')) || [
-    "https://via.placeholder.com/300/00d4ff/0a0a0a?text=Foto+Kelas+1",
-    "https://via.placeholder.com/300/00a8cc/0a0a0a?text=Foto+Kelas+2",
-    "https://via.placeholder.com/300/00d4ff/0a0a0a?text=Foto+Kelas+3"
+    "images/foto-1.jpg",
+    "images/foto-2.jpg",
+    "images/foto-3.jpg"
 ];
 
 // ==========================================
@@ -526,5 +526,6 @@ window.onclick = function(e) {
         e.target.classList.remove('active');
     }
 }
+
 
 
