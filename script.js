@@ -10,38 +10,70 @@ let currentFilter = 'all';
 
 // Default Data
 let dataAbsen = JSON.parse(localStorage.getItem('absen')) || [
-    {no: 1, nama: "Ahmad Fauzi", jk: "L"},
-    {no: 2, nama: "Budi Santoso", jk: "L"},
-    {no: 3, nama: "Citra Dewi", jk: "P"},
-    {no: 4, nama: "Dian Putri", jk: "P"},
-    {no: 5, nama: "Eko Prasetyo", jk: "L"},
-    {no: 6, nama: "Fajar Nugroho", jk: "L"},
-    {no: 7, nama: "Gita Sari", jk: "P"},
-    {no: 8, nama: "Hadi Wijaya", jk: "L"}
+    {no: 1, nama: "Alim Saputra", jk: "L"},
+    {no: 2, nama: "Ananda Mikola", jk: "L"},
+    {no: 3, nama: "Dany Indarto Prasetyo", jk: "P"},
+    {no: 4, nama: "Dede Sulkifli", jk: "L"},
+    {no: 5, nama: "Devi", jk: "P"},
+    {no: 6, nama: "Fajrun Ziyadi Murawi", jk: "L"},
+    {no: 7, nama: "Fauzyyah", jk: "P"},
+    {no: 8, nama: "I Gede Andika Putra Natha", jk: "L"},
+    {no: 9, nama: "Intan Nuraisyah", jk: "P"},
+    {no: 10, nama: "Irfan Pratama", jk: "L"},
+    {no: 11, nama: "M. Yusran", jk: "L"},
+    {no: 12, nama: "Mathew Fabio Caysar Banea", jk: "L"},
+    {no: 13, nama: "Muh. Iyan Firmansyah", jk: "L"},
+    {no: 14, nama: "Muh. Nur Qalbi Umar", jk: "L"},
+    {no: 15, nama: "Muh. Asry", jk: "L"},
+    {no: 16, nama: "Muh. Ell Farel", jk: "L"},
+    {no: 17, nama: "Muh. Ezhar Rafif Putra Budjana", jk: "L"},
+    {no: 18, nama: "Muh. Hafidz Hafiduddin", jk: "L"},
+    {no: 19, nama: "Muh. Rafly", jk: "L"},
+    {no: 20, nama: "Muh. Fauzan", jk: "L"},
+    {no: 21, nama: "Muh. Alif Zainnuddin", jk: "L"},
+    {no: 22, nama: "Muh. Aqsa", jk: "L"},
+    {no: 23, nama: "Muh. Doni Syachika Rahman", jk: "L"},
+    {no: 24, nama: "Muh. Julian Saputra", jk: "L"},
+    {no: 25, nama: "Muh. Rasyidi", jk: "L"},
+    {no: 26, nama: "Muhammad Sahrul Ramadhan", jk: "L"},
+    {no: 27, nama: "Nanda Dwi Darma Putra Anggara", jk: "L"},
+    {no: 28, nama: "Nora Indasari", jk: "L"},
+    {no: 29, nama: "Nur Julianaya Mulia", jk: "L"},
+    {no: 30, nama: "Nur Nayla R", jk: "L"},
+    {no: 31, nama: "Nurul Annisa Amilah Sholehah Amal", jk: "L"},
+    {no: 31, nama: "Resky Suci Pebriani", jk: "L"},
+    {no: 33, nama: "Reymond", jk: "L"},
+    {no: 34, nama: "Risky Andika Rasul", jk: "L"},
+    {no: 35, nama: "Srigusnawati", jk: "L"},
+    {no: 36, nama: "Tristan Manuel Musu", jk: "L"},
+    {no: 37, nama: "Syfa Shara", jk: "L"},
+
+
+    
 ];
 
 let dataJadwal = JSON.parse(localStorage.getItem('jadwal')) || {
-    senin: ["Matematika", "Bahasa Indonesia", "Pemrograman Web", "Pemrograman Web", "Istirahat", "Basis Data"],
-    selasa: ["PBO", "PBO", "Bahasa Inggris", "Matematika", "Istirahat", "PKN"],
-    rabu: ["Pemrograman Web", "Pemrograman Web", "Matematika", "Bahasa Indonesia", "Istirahat", "PJOK"],
-    kamis: ["Basis Data", "Basis Data", "PBO", "PBO", "Istirahat", "Bahasa Inggris"],
-    jumat: ["Agama", "PKN", "Matematika", "Istirahat", "Produktif"]
+    senin: ["Bing", "Pkn", "Istirahat", "Kwu", "Kwu"],
+    selasa: ["KK1", "KK1", "Istirahat", "KK2", , "Agama"],
+    rabu: ["KK3", "KK3", "Matematika", "Istirahat", "KK1"],
+    kamis: ["KK3", "KK3", "Bahasa Indonesia","Istirahat", "KK2"],
+    jumat: ["KK1", "KK1", "Istirahat", "Bahasa Inggris","Bahsa inggris"],
 };
 
 let dataPiket = JSON.parse(localStorage.getItem('piket')) || [
-    {hari: "Senin", nama: ["Ahmad", "Budi", "Citra"]},
-    {hari: "Selasa", nama: ["Dian", "Eko", "Fajar"]},
-    {hari: "Rabu", nama: ["Gita", "Hadi", "Indah"]},
-    {hari: "Kamis", nama: ["Joko", "Kiki", "Lina"]},
-    {hari: "Jumat", nama: ["Maman", "Nina", "Omar"]}
+    {hari: "Senin", nama: ["Dany", "Nurul", "Reymond","Nanda", "Syfa", "Dony","Hafidz", "Dede"]},
+    {hari: "Selasa", nama: ["Nayla", "Devi", "Fauzan","Rasyidi", "Rafly", "Julian"]},
+    {hari: "Rabu", nama: ["Mathew", "Ezhar", "Intan","Alif", "Aqsa", "Nora","Yusran"]},
+    {hari: "Kamis", nama: ["Sahrul", "Muflih", "Tristan","Naya", "Dika", "Asyr","Suci"]},
+    {hari: "Jumat", nama: ["Irfan", "Gusna", "I Gede","Alim", "Fajrun", "Uci","Iyan"]}
 ];
 
 let dataStruktur = JSON.parse(localStorage.getItem('struktur')) || [
-    {jabatan: "Wali Kelas", nama: "Pak Surya, S.Pd", icon: "fa-chalkboard-teacher"},
-    {jabatan: "Ketua Kelas", nama: "Ahmad Fauzi", icon: "fa-crown"},
-    {jabatan: "Wakil Ketua", nama: "Budi Santoso", icon: "fa-user-tie"},
-    {jabatan: "Sekretaris", nama: "Citra Dewi", icon: "fa-pen"},
-    {jabatan: "Bendahara", nama: "Dian Putri", icon: "fa-money-bill-wave"}
+    {jabatan: "Wali Kelas", nama: "Emi , S.S., S.Pd", icon: "fa-chalkboard-teacher"},
+    {jabatan: "Ketua Kelas", nama: "Ell Farel", icon: "fa-crown"},
+    {jabatan: "Wakil Ketua", nama: "Nanda Dwi Darma P.A", icon: "fa-user-tie"},
+    {jabatan: "Sekretaris", nama: "Dany Indarto Prasetyo", icon: "fa-pen"},
+    {jabatan: "Bendahara", nama: "Nur Nayla", icon: "fa-money-bill-wave"}
 ];
 
 let dataGaleri = JSON.parse(localStorage.getItem('galeri')) || [
@@ -65,7 +97,7 @@ function login(type) {
         
         if (user === ADMIN_USER && pass === ADMIN_PASS) {
             currentUser = 'admin';
-            showToast('Login Admin berhasil!', 'success');
+            showToast('Anjaii Gass Login!!', 'success');
             showApp();
         } else {
             showToast('Username atau password salah!', 'error');
@@ -494,3 +526,4 @@ window.onclick = function(e) {
         e.target.classList.remove('active');
     }
 }
+
